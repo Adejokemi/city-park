@@ -1,0 +1,35 @@
+{
+  "name": "shortlet-booking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/xlsx": "^0.0.36",
+    "@zxing/browser": "^0.1.5",
+    "lucide-react": "^0.507.0",
+    "next": "15.3.1",
+    "qrcode.react": "^4.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-paystack": "^6.0.0",
+    "react-qr-reader": "^3.0.0-beta-1",
+    "react-qrcode-logo": "^3.0.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

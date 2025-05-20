@@ -54,6 +54,8 @@ export default function BookNow() {
   >({});
   const [processing, setProcessing] = useState(false);
 
+  const router = useRouter();
+
   const prices: Record<string, number> = {
     Basic: 2000,
     Classic: 3500,
@@ -97,8 +99,6 @@ export default function BookNow() {
     return Object.keys(errs).length === 0;
   };
 
-  const router = useRouter();
-
   const onSuccess = (tx: {
     reference: string;
     transaction: string;
@@ -111,7 +111,6 @@ export default function BookNow() {
       date: new Date().toISOString(),
     };
     localStorage.setItem(`booking_${tx.reference}`, JSON.stringify(booking));
-
     router.push(`/confirmation?reference=${tx.reference}`);
   };
 
@@ -178,7 +177,6 @@ export default function BookNow() {
         <div className="max-w-3xl mx-auto text-gray-800 bg-white rounded-lg shadow-lg p-8">
           {/* Form Inputs */}
           <div className="space-y-4">
-            {/* Full Name */}
             <div>
               <label className="block font-medium">Full Name *</label>
               <input
@@ -195,7 +193,6 @@ export default function BookNow() {
               )}
             </div>
 
-            {/* Email */}
             <div>
               <label className="block font-medium">Email Address *</label>
               <input
@@ -213,7 +210,6 @@ export default function BookNow() {
               )}
             </div>
 
-            {/* Phone */}
             <div>
               <label className="block font-medium">Phone Number *</label>
               <input
@@ -230,7 +226,6 @@ export default function BookNow() {
               )}
             </div>
 
-            {/* Visit Date */}
             <div>
               <label className="block font-medium">Visit Date *</label>
               <input
@@ -330,32 +325,34 @@ export default function BookNow() {
                 </span>
               </div>
             )}
-            <div className="flex justify-between font-bold text-lg mt-2">
+            <div className="flex justify-between font-bold mt-2 border-t pt-2">
               <span>Total:</span>
               <span>₦{totalAmount.toLocaleString()}</span>
             </div>
           </div>
 
-          {/* Paystack Button */}
-          <div className="mt-8 text-center">
-            <div onClick={handlePayment}>
-              {processing ? (
-                <button
-                  disabled
-                  className="px-6 py-3 bg-green-400 text-white rounded w-full cursor-not-allowed"
-                >
-                  Processing...
-                </button>
-              ) : (
-                <PaystackButton
-                  {...paystackProps}
-                  className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded w-full"
-                />
-              )}
-            </div>
+          {/* Pay Button */}
+          <div className="mt-6 text-center">
+            {!processing ? (
+              <PaystackButton
+                {...paystackProps}
+                className="bg-green-600 text-white py-3 px-6 rounded w-full"
+              />
+            ) : (
+              <button
+                disabled
+                className="bg-gray-400 text-white py-3 px-6 rounded w-full cursor-not-allowed"
+              >
+                Processing...
+              </button>
+            )}
           </div>
         </div>
       </main>
+
+      <footer className="bg-green-700 text-white text-center p-4">
+        &copy; {new Date().getFullYear()} City Park. All rights reserved.
+      </footer>
     </div>
   );
 }

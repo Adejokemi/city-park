@@ -49,7 +49,7 @@ export default function BookNow() {
     childCount: 0,
     visitDate: "",
   });
-  const [errors, setErrors] = useState<
+  const [errors] = useState<
     Partial<Record<keyof typeof form, string>>
   >({});
   const [processing, setProcessing] = useState(false);
@@ -86,18 +86,18 @@ export default function BookNow() {
     }));
   };
 
-  const validate = () => {
-    const errs: typeof errors = {};
-    if (!form.fullName.trim()) errs.fullName = "Name is required";
-    if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
-      errs.email = "Valid email required";
-    if (!form.phone.trim()) errs.phone = "Phone is required";
-    if (!form.visitDate) errs.visitDate = "Visit date is required";
-    if (form.adultCount + form.childCount < 1)
-      errs.childCount = "At least one ticket";
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
+  // const validate = () => {
+  //   const errs: typeof errors = {};
+  //   if (!form.fullName.trim()) errs.fullName = "Name is required";
+  //   if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+  //     errs.email = "Valid email required";
+  //   if (!form.phone.trim()) errs.phone = "Phone is required";
+  //   if (!form.visitDate) errs.visitDate = "Visit date is required";
+  //   if (form.adultCount + form.childCount < 1)
+  //     errs.childCount = "At least one ticket";
+  //   setErrors(errs);
+  //   return Object.keys(errs).length === 0;
+  // };
 
   const onSuccess = (tx: {
     reference: string;
@@ -153,10 +153,10 @@ export default function BookNow() {
     onClose: () => setProcessing(false),
   };
 
-  const handlePayment = () => {
-    if (!validate()) return;
-    setProcessing(true);
-  };
+  // const handlePayment = () => {
+  //   if (!validate()) return;
+  //   setProcessing(true);
+  // };
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">

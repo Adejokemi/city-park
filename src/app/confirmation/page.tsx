@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { QRCode } from "react-qrcode-logo";
 import Link from "next/link";
 import Head from "next/head";
+import BookingQRCode from "./components/BookingQR";
 
 type Booking = {
   id: string;
@@ -26,7 +26,7 @@ export default function ConfirmationPage() {
 
   useEffect(() => {
     if (reference) {
-      const stored = localStorage.getItem(`booking_#{reference}`);
+      const stored = localStorage.getItem(`booking_${reference}`);
       if (stored) {
         setBooking(JSON.parse(stored));
       }
@@ -68,7 +68,6 @@ export default function ConfirmationPage() {
 
       <main className="flex-grow container mx-auto p-6 flex flex-col items-center">
         <div className="max-w-3xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
-          {/* Header with success banner */}
           <div className="bg-green-600 text-white p-6 flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold">Booking Confirmed!</h1>
@@ -94,9 +93,7 @@ export default function ConfirmationPage() {
             </div>
           </div>
 
-          {/* Content */}
           <div className="p-6 md:p-8">
-            {/* Thank you message */}
             <div className="text-center mb-8">
               <p className="text-gray-700 text-lg">
                 Thank you,{" "}
@@ -111,7 +108,6 @@ export default function ConfirmationPage() {
               </p>
             </div>
 
-            {/* Booking details and QR side by side on larger screens */}
             <div className="md:flex md:gap-8">
               {/* Booking details */}
               <div className="flex-1 mb-8 md:mb-0">
@@ -119,51 +115,23 @@ export default function ConfirmationPage() {
                   Booking Details
                 </h2>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500">Reference</span>
-                    <span className="font-medium text-gray-800">
-                      {booking.id}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500">Name</span>
-                    <span className="font-medium text-gray-800">
-                      {booking.fullName}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500">Email</span>
-                    <span className="font-medium text-gray-800">
-                      {booking.email}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500">Phone</span>
-                    <span className="font-medium text-gray-800">
-                      {booking.phone}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500">Visit Date</span>
-                    <span className="font-medium text-gray-800">
-                      {formatDate(booking.visitDate)}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500">Ticket Type</span>
-                    <span className="font-medium text-gray-800">
-                      {booking.ticketType}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500">Tickets</span>
-                    <span className="font-medium text-gray-800">
-                      {booking.adultCount} Adult
-                      {booking.adultCount !== 1 ? "s" : ""},{" "}
-                      {booking.childCount} Child
-                      {booking.childCount !== 1 ? "ren" : ""}
-                    </span>
-                  </div>
+                  <Detail label="Reference" value={booking.id} />
+                  <Detail label="Name" value={booking.fullName} />
+                  <Detail label="Email" value={booking.email} />
+                  <Detail label="Phone" value={booking.phone} />
+                  <Detail
+                    label="Visit Date"
+                    value={formatDate(booking.visitDate)}
+                  />
+                  <Detail label="Ticket Type" value={booking.ticketType} />
+                  <Detail
+                    label="Tickets"
+                    value={`${booking.adultCount} Adult${
+                      booking.adultCount !== 1 ? "s" : ""
+                    }, ${booking.childCount} Child${
+                      booking.childCount !== 1 ? "ren" : ""
+                    }`}
+                  />
                   <div className="flex justify-between items-center pt-2 border-t border-gray-200">
                     <span className="text-gray-700 font-semibold">
                       Total Paid
@@ -175,28 +143,12 @@ export default function ConfirmationPage() {
                 </div>
               </div>
 
-              {/* QR Code */}
+              {/* Booking QR Code */}
               <div className="flex-1 flex flex-col items-center">
-                <h2 className="text-xl font-semibold mb-4 text-green-700 text-center">
-                  Entry Pass
-                </h2>
-                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                  <QRCode
-                    value={booking.id}
-                    size={180}
-                    bgColor="#FFFFFF"
-                    fgColor="#000000"
-                    logoWidth={50}
-                    logoHeight={50}
-                  />
-                </div>
-                <p className="text-sm mt-4 text-gray-600 text-center">
-                  Please present this QR code upon arrival for quick check-in
-                </p>
+                <BookingQRCode bookingId={booking.id} />
               </div>
             </div>
 
-            {/* Additional info */}
             <div className="mt-8 bg-green-50 p-4 rounded-lg border border-green-100">
               <h3 className="font-semibold text-green-700">
                 Important Information
@@ -207,14 +159,10 @@ export default function ConfirmationPage() {
                   • This booking confirmation has been sent to your email
                   address
                 </li>
-                <li>
-                  • For any questions, please contact our support team at
-                  support@Citypark.com
-                </li>
+                <li>• For any questions, contact support@Citypark.com</li>
               </ul>
             </div>
 
-            {/* Button */}
             <div className="mt-8 flex justify-center">
               <Link
                 href="/"
@@ -230,6 +178,15 @@ export default function ConfirmationPage() {
       <footer className="bg-gray-100 p-4 text-center text-gray-600 text-sm">
         © {new Date().getFullYear()} City Park. All rights reserved.
       </footer>
+    </div>
+  );
+}
+
+function Detail({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex justify-between items-center">
+      <span className="text-gray-500">{label}</span>
+      <span className="font-medium text-gray-800">{value}</span>
     </div>
   );
 }

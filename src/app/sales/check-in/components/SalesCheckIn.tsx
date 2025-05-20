@@ -199,7 +199,7 @@ export default function CheckInPage() {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-10 w-64 bg-emerald-800 text-white transform transition-transform duration-300 ease-in-out #{
+        className={`fixed inset-y-0 left-0 z-10 w-64 bg-emerald-800 text-white transform transition-transform duration-300 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:static lg:inset-auto lg:h-screen`}
       >
@@ -299,7 +299,7 @@ export default function CheckInPage() {
                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center">
                       <div
                         className="absolute top-0 left-0 right-0 h-1 bg-emerald-500 opacity-70"
-                        style={{ transform: `translateY(#{scanProgress}%)` }}
+                        style={{ transform: `translateY(${scanProgress}%)` }}
                       ></div>
 
                       {/* Scan lines */}
@@ -335,7 +335,7 @@ export default function CheckInPage() {
                   <button
                     onClick={startScanning}
                     disabled={scanning}
-                    className={`px-6 py-3 rounded-md #{
+                    className={`px-6 py-3 rounded-md ${
                       scanning
                         ? "bg-gray-500"
                         : "bg-emerald-600 hover:bg-emerald-700"
@@ -489,7 +489,7 @@ export default function CheckInPage() {
                   <div className="flex justify-between mb-2">
                     <span className="text-gray-700">Ticket Type:</span>
                     <span
-                      className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full #{getTicketBadgeColor(
+                      className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getTicketBadgeColor(
                         booking.ticketType
                       )}`}
                     >

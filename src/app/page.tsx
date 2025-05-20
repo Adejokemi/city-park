@@ -91,10 +91,10 @@ const Home: NextPage = () => {
         className="relative h-screen max-h-[700px] bg-cover bg-center overflow-hidden"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1598334670437-ca4f4ee51687?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBhcmtzfGVufDB8fDB8fHww')",
+            "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee')",
         }}
       >
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/20" />
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <div className="text-white max-w-2xl">
             <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
@@ -285,30 +285,30 @@ const Home: NextPage = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
-            <div className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105">
-              <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
-            </div>
+            {[
+              "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+              "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+              "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
+              "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+              "https://images.unsplash.com/photo-1444464666168-49d633b86797",
+              "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
+              "https://images.unsplash.com/photo-1652254694570-7f90486a675f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHBhcmtzfGVufDB8fDB8fHww",
+              "https://images.unsplash.com/photo-1543353071-873f17a7a088",
+            ].map((src, index) => (
+              <div
+                key={index}
+                className="relative h-40 md:h-64 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-105"
+              >
+                <Image
+                  width={600}
+                  height={400}
+                  src={`${src}?auto=format&fit=crop&w=600&q=80`}
+                  alt={`Park image ${index + 1}`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-green-900/20 hover:bg-green-900/10 transition-colors z-10"></div>
+              </div>
+            ))}
           </div>
 
           <div className="mt-10 text-center">

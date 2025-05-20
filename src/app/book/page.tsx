@@ -87,7 +87,7 @@ export default function BookNow() {
   const validate = () => {
     const errs: typeof errors = {};
     if (!form.fullName.trim()) errs.fullName = "Name is required";
-    if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+#/))
+    if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
       errs.email = "Valid email required";
     if (!form.phone.trim()) errs.phone = "Phone is required";
     if (!form.visitDate) errs.visitDate = "Visit date is required";
@@ -110,9 +110,9 @@ export default function BookNow() {
       total: totalAmount,
       date: new Date().toISOString(),
     };
-    localStorage.setItem(`booking_#{tx.reference}`, JSON.stringify(booking));
+    localStorage.setItem(`booking_${tx.reference}`, JSON.stringify(booking));
 
-    router.push(`/confirmation?reference=#{tx.reference}`);
+    router.push(`/confirmation?reference=${tx.reference}`);
   };
 
   const paystackProps = {
@@ -185,7 +185,7 @@ export default function BookNow() {
                 name="fullName"
                 value={form.fullName}
                 onChange={handleChange}
-                className={`w-full border px-3 py-2 rounded #{
+                className={`w-full border px-3 py-2 rounded ${
                   errors.fullName ? "border-red-500" : "border-gray-300"
                 }`}
                 placeholder="John Doe"
@@ -203,7 +203,7 @@ export default function BookNow() {
                 type="email"
                 value={form.email}
                 onChange={handleChange}
-                className={`w-full border px-3 py-2 rounded #{
+                className={`w-full border px-3 py-2 rounded ${
                   errors.email ? "border-red-500" : "border-gray-300"
                 }`}
                 placeholder="john@example.com"
@@ -220,7 +220,7 @@ export default function BookNow() {
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                className={`w-full border px-3 py-2 rounded #{
+                className={`w-full border px-3 py-2 rounded ${
                   errors.phone ? "border-red-500" : "border-gray-300"
                 }`}
                 placeholder="+234 800 000 0000"
@@ -239,7 +239,7 @@ export default function BookNow() {
                 value={form.visitDate}
                 onChange={handleChange}
                 min={new Date().toISOString().split("T")[0]}
-                className={`w-full border px-3 py-2 rounded #{
+                className={`w-full border px-3 py-2 rounded ${
                   errors.visitDate ? "border-red-500" : "border-gray-300"
                 }`}
               />

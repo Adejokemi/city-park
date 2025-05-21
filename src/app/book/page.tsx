@@ -153,6 +153,8 @@ export default function BookNow() {
     onClose: () => setProcessing(false),
   };
 
+  const [agree, setAgree] = useState(false);
+
   // const handlePayment = () => {
   //   if (!validate()) return;
   //   setProcessing(true);
@@ -329,6 +331,21 @@ export default function BookNow() {
               <span>Total:</span>
               <span>₦{totalAmount.toLocaleString()}</span>
             </div>
+          </div>
+
+          <div className="flex items-start mt-4 space-x-3">
+            <input
+              type="checkbox"
+              id="agree"
+              checked={agree}
+              onChange={(e) => setAgree(e.target.checked)}
+              className="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+            />
+            <label htmlFor="agree" className="text-sm text-gray-700">
+              I understand that tickets are <strong>non-refundable</strong> and
+              must be used on the date booked. If unused, I have only{" "}
+              <strong>24 hours grace</strong> after the booked date.
+            </label>
           </div>
 
           {/* Pay Button */}

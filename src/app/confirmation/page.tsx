@@ -154,7 +154,12 @@ export default function ConfirmationPage() {
                 Important Information
               </h3>
               <ul className="mt-2 text-sm text-gray-700 space-y-1">
-                <li>• Please arrive 15 minutes before your scheduled time</li>
+                <li>
+                  • Please note that tickets are{" "}
+                  <strong>non-refundable</strong> and must be used on the date
+                  booked. If unused, You only have <strong>24 hours grace</strong>{" "}
+                  after the booked date.
+                </li>
                 <li>
                   • This booking confirmation has been sent to your email
                   address
